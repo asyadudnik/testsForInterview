@@ -2,6 +2,7 @@ package org.tests;
 
 import static org.tests.fibonacci.PrintFibonacci.printFibonacciSequence;
 import static org.tests.fibonacci.PrintFibonacciRecursive.printFibonacciWithRecurse;
+import static org.tests.odd.OddNumbers.printOddResults;
 import static org.tests.prime.PrimeNumberCheck.isPrime;
 
 public class Main {
@@ -15,6 +16,9 @@ public class Main {
         printFibonacciSequence(10);
 
         printFibonacciWithRecurse();
+        //odd
+
+        printOddResults();
 
     }
 }
