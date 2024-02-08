@@ -1,6 +1,7 @@
 package org.tests;
 
 import static org.tests.fibonacci.PrintFibonacci.printFibonacciSequence;
+import static org.tests.fibonacci.PrintFibonacciRecursive.printFibonacciWithRecurse;
 import static org.tests.prime.PrimeNumberCheck.isPrime;
 
 public class Main {
@@ -12,6 +13,8 @@ public class Main {
         System.out.println(isPrime(49)); // false
         //fibonacci
         printFibonacciSequence(10);
+
+        printFibonacciWithRecurse();
 
     }
 }

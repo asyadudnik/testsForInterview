@@ -1,6 +1,10 @@
 package org.tests.fibonacci;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class PrintFibonacci {
+    private static final Logger logger = Logger.getLogger(PrintFibonacci.class.getName());
     private PrintFibonacci() {
     }
 
@@ -11,7 +15,9 @@ public class PrintFibonacci {
 
         for (int i = 1; i <= count; i++) {
             System.out.print(a + ", ");
-
+            if(logger.isLoggable(Level.ALL)) {
+                logger.info(a + ", ");
+            }
             a = b;
             b = c;
             c = a + b;
