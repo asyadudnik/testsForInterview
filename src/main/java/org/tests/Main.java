@@ -2,7 +2,6 @@ package org.tests;
 
 import org.tests.threads.CustomThread;
 
-import static java.lang.Thread.interrupted;
 import static org.tests.fibonacci.PrintFibonacci.printFibonacciSequence;
 import static org.tests.fibonacci.PrintFibonacciRecursive.printFibonacciWithRecurse;
 import static org.tests.functional_interface.CallFunctionalInterface.call;
@@ -18,11 +17,15 @@ public class Main {
         System.out.println(isPrime(19)); // true
         System.out.println(isPrime(49)); // false
         //fibonacci
+        System.out.println("====== fibonacci==============");
         printFibonacciSequence(10);
         printFibonacciWithRecurse();
         //odd
+        System.out.println("====== odd==============");
         printOddResults();
-//threads
+
+        System.out.println("====== threads==============");
+
         CustomThread t1 = new CustomThread("Первый поток");
         t1.start();
         try {
@@ -36,7 +39,7 @@ public class Main {
         try {
             t2.join();
         } catch (InterruptedException e) {
-            t2.interrupted();
+            Thread.interrupted();
             throw new RuntimeException(e);
         }
         CustomThread t3 = new CustomThread("Третий поток");
@@ -44,10 +47,11 @@ public class Main {
         try {
             t3.join();
         } catch (InterruptedException e) {
-            interrupted();
+            Thread.interrupted();
             throw new RuntimeException(e);
         }
         //streams
+        System.out.println("======Streams======================");
         reduceUsage();
         min();
         primitivesAverage();
@@ -59,7 +63,7 @@ public class Main {
         call(14,23);
         call(21,123);
         testStream();
-        testMap();
-
+        testGroupping();
+        testSmallestLargestDigit();
     }
 }

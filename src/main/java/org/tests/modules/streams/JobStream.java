@@ -23,7 +23,7 @@ public class JobStream {
         Integer min = numbers.stream()
                 .reduce(Integer.MAX_VALUE, Integer::min);
 
-        System.out.println(min); //output
+        out.println(min); //output
     }
 
     public static void primitivesAverage() {
@@ -121,11 +121,36 @@ public class JobStream {
         integers.stream().limit(4).forEach(x -> out.print(x + " "));
     }
 
-    public static void testMap() {
+    public static void testGroupping() {
         String str = "Welcome to code decode and code decode welcome you";
         out.println(str);
         List<String> ss = Arrays.asList(str.split(" "));
-        Map<String, Long> map = ss.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        Map<String, Long> map = ss.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
         out.println(map);
+    }
+
+    public static void testSmallestLargestDigit() {
+        List<Integer> nums = Arrays.asList(1, 17, 54, 14, 14, 33, 45, -11);
+        System.out.println("List of numbers: " + nums);
+        // Find the second smallest element
+        Integer secondSmallest = nums.stream()
+                .distinct()
+                .sorted()
+                .skip(1)
+                .findFirst()
+                .orElse(null);
+
+        // Find the second largest element
+        Integer secondLargest = nums.stream()
+                .distinct()
+                .sorted((a, b) -> Integer.compare(b, a))
+                .skip(1)
+                .findFirst()
+                .orElse(null);
+
+        System.out.println("\nSecond smallest element: " + secondSmallest);
+        System.out.println("\nSecond largest element: " + secondLargest);
     }
 }
