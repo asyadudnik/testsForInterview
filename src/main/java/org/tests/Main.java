@@ -31,7 +31,7 @@ public class Main {
         try {
             t1.join();
         } catch (InterruptedException e) {
-            t1.interrupted();
+            Thread.interrupted();
             throw new RuntimeException(e);
         }
         CustomThread t2 = new CustomThread("Второй поток");

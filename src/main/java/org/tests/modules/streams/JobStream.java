@@ -8,6 +8,9 @@ import static java.lang.System.*;
 import static java.util.Arrays.asList;
 
 public class JobStream {
+    private JobStream() {
+    }
+
     public static void reduceUsage() {
         List<Integer> numbers = asList(1, 2, 3, 5);
 
@@ -70,7 +73,7 @@ public class JobStream {
         petNames = humans.stream()
                 .map(Human::getPets) //преобразовываем Stream<Human> в Stream<List<Pet>>
                 .flatMap(Collection::stream)//"разворачиваем" Stream<List<Pet>> в Stream<Pet>
-                .collect(Collectors.toList());
+                .toList();
 
         System.out.println(petNames); // output [Buddy, Lucy, Frankie, Rosie, Simba, Tilly]
         int[][] arr = {{1, 2}, {3, 4}, {5, 6}};
@@ -104,13 +107,13 @@ public class JobStream {
     public static void dublicates() {
         List<Integer> integers = Arrays.asList(11, 12, 11, 13, 15, 15);
         Set<Integer> integerSet = new HashSet<>();
-        //  integers.stream().filter(integerSet::add).forEach(x-> out.print(x+" "));
+        integers.stream().filter(integerSet::add).forEach(x-> out.print(x+" "));
         out.println("\n\r");
 
         integers.stream().filter(x -> !integerSet.add(x)).forEach(x -> out.print(x + " "));
         out.println("\n\r");
 
-        //integers.stream().filter(x-> !integerSet.add(x)).collect(Collectors.toSet()).forEach(x-> out.print(x+" "));
+        integers.stream().filter(x-> !integerSet.add(x)).collect(Collectors.toSet()).forEach(x-> out.print(x+" "));
 
     }
 
