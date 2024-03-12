@@ -1,11 +1,13 @@
 package org.tests.threads;
 
 // SharedResourceExercise.java
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import static java.lang.Thread.interrupted;
-
+@Slf4j
 public class UsageLock {
     private static final int NUM_THREADS = 3;
     private static final int NUM_ITERATIONS = 5;
@@ -26,7 +28,7 @@ public class UsageLock {
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
-            interrupted();
+            Thread.currentThread().interrupt();
         }
     }
 
@@ -39,13 +41,14 @@ public class UsageLock {
             this.sharedResource = sharedResource;
         }
 
+        @Override
         public void run() {
             for (int i = 0; i < NUM_ITERATIONS; i++) {
-                lock.lock();
+                this.lock.lock();
                 try {
-                    sharedResource.doWork();
+                    this.sharedResource.doWork();
                 } finally {
-                    lock.unlock();
+                    this.lock.unlock();
                 }
             }
         }
@@ -54,7 +57,7 @@ public class UsageLock {
     static class SharedResource {
         public void doWork() {
             String threadName = Thread.currentThread().getName();
-            System.out.println("Thread-> " + threadName + " is performing work.");
+            log.info("Thread-> " + threadName + " is performing work.");
             // Perform work on the shared resource
         }
     }

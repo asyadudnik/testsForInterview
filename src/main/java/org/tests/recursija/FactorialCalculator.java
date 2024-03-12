@@ -1,5 +1,8 @@
 package org.tests.recursija;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class FactorialCalculator {
 
         public static int calculateFactorial(int n) {
@@ -15,9 +18,9 @@ public class FactorialCalculator {
         public static void main(String[] args) {
             int number = 7;
             int factorial = calculateFactorial(number);
-            System.out.println("Factorial of " + number + " is: " + factorial);
+            log.info("Factorial of " + number + " is: " + factorial);
             number = 12;
             factorial = calculateFactorial(number);
-            System.out.println("\nFactorial of " + number + " is: " + factorial);
+            log.info("\nFactorial of " + number + " is: " + factorial);
         }
     }

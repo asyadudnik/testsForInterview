@@ -1,12 +1,15 @@
 package org.tests.regex;
-import java.util.*;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class IPChecker {
 
         public static void main(String[] args) {
 
-            System.out.println(validate("216.08.094.196"));
-            System.out.println(validate("08.008.0008.00008"));
-            System.out.println(validate("01.102.103.104"));
+            log.info(validate("216.08.094.196"));
+            log.info(validate("08.008.0008.00008"));
+            log.info(validate("01.102.103.104"));
         }
 
         public static String validate(String ip) {

@@ -1,6 +1,10 @@
 package org.tests.recursija;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class PalindromeChecker {
+    public static final String IS_PALINDROME = " is a palindrome: ";
 
     public static boolean isPalindrome(String str) {
         // Base case: an empty string or a string with one character is a palindrome
@@ -24,14 +28,14 @@ public class PalindromeChecker {
     public static void main(String[] args) {
         String palindrome1 = "madam";
         boolean isPalindrome1 = isPalindrome(palindrome1);
-        System.out.println(palindrome1 + " is a palindrome: " + isPalindrome1);
+        log.info(palindrome1 + IS_PALINDROME + isPalindrome1);
 
         String palindrome2 = "level";
         boolean isPalindrome2 = isPalindrome(palindrome2);
-        System.out.println(palindrome2 + " is a palindrome: " + isPalindrome2);
+        log.info(palindrome2 + IS_PALINDROME + isPalindrome2);
 
         String notPalindrome = "java";
         boolean isPalindrome3 = isPalindrome(notPalindrome);
-        System.out.println(notPalindrome + " is a palindrome: " + isPalindrome3);
+        log.info(notPalindrome + IS_PALINDROME + isPalindrome3);
     }
 }

@@ -1,7 +1,9 @@
 package org.tests.threads;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
-
+@Slf4j
 public class CyclicBarrierExercise {
     private static final int NUM_THREADS = 3;
     private static final CyclicBarrier barrier = new CyclicBarrier(NUM_THREADS, new BarrierAction());
@@ -19,27 +21,31 @@ public class CyclicBarrierExercise {
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
     }
 
     static class Worker implements Runnable {
+        @Override
         public void run() {
             try {
-                System.out.println("Thread " + Thread.currentThread().getName() + " is waiting at the barrier.");
+                log.info("Thread " + Thread.currentThread().getName() + " is waiting at the barrier.");
                 barrier.await();
 
                 // Perform work after reaching the barrier
 
-                System.out.println("Thread " + Thread.currentThread().getName() + " has crossed the barrier and continued execution.");
+                log.info("Thread " + Thread.currentThread().getName() + " has crossed the barrier and continued execution.");
             } catch (InterruptedException | BrokenBarrierException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
     }
 
     static class BarrierAction implements Runnable {
+        @Override
         public void run() {
-            System.out.println("Barrier reached! All threads have arrived at the barrier.");
+            log.info("Barrier reached! All threads have arrived at the barrier.");
         }
     }
 }

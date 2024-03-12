@@ -1,8 +1,10 @@
 package org.tests.fibonacci;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+@Slf4j
 public class PrintFibonacci {
     private static final Logger logger = Logger.getLogger(PrintFibonacci.class.getName());
     private PrintFibonacci() {
@@ -14,7 +16,7 @@ public class PrintFibonacci {
         int c = 1;
 
         for (int i = 1; i <= count; i++) {
-            System.out.print(a + ", ");
+            log.info(a + ", ");
             if(logger.isLoggable(Level.ALL)) {
                 logger.info(a + ", ");
             }

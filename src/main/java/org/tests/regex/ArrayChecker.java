@@ -1,16 +1,16 @@
 package org.tests.regex;
 
-import java.util.Scanner;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 public class ArrayChecker {
 
     public static void main(String[] args) {
 
-        System.out.println(validate("ABCDEFabcdef123450"));
-        System.out.println(validate("SQL"));
-        System.out.println(validate("Java"));
-        System.out.println(validate("*&%@#!}{"));
-        System.out.println(validate("w3resource.com"));
+        log.info(String.valueOf(validate("ABCDEFabcdef123450")));
+        log.info(String.valueOf(validate("SQL")));
+        log.info(String.valueOf(validate("Java")));
+        log.info(String.valueOf(validate("*&%@#!}{")));
+        log.info(String.valueOf(validate("w3resource.com")));
     }
 
     public static boolean validate(String text) {

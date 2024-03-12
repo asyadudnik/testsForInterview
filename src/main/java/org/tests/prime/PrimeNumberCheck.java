@@ -1,13 +1,15 @@
 package org.tests.prime;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+@Slf4j
 public class PrimeNumberCheck {
     private static final Logger logger = Logger.getLogger(PrimeNumberCheck.class.getName());
     public static void main(String[] args) {
-        System.out.println(isPrime(19)); // true
-        System.out.println(isPrime(49)); // false
+        log.info(isPrime(19)); // true
+        log.info(isPrime(49)); // false
 
         if(logger.isLoggable(Level.ALL)) {
             logger.info(isPrime(19));

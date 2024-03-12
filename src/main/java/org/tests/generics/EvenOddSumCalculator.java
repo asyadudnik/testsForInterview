@@ -1,7 +1,9 @@
 package org.tests.generics;
 
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
+@Slf4j
 public class EvenOddSumCalculator {
   public static < T extends Number > void calculateNumberSum(List < T > numbers) {
     double evenSum = 0;
@@ -14,9 +16,9 @@ public class EvenOddSumCalculator {
         oddSum += number.doubleValue();
       }
     }
-    System.out.println("\nOriginal list of numbers: " + numbers);
-    System.out.println("Sum of even numbers: " + evenSum);
-    System.out.println("Sum of odd numbers: " + oddSum);
+    log.info("\nOriginal list of numbers: " + numbers);
+    log.info("Sum of even numbers: " + evenSum);
+    log.info("Sum of odd numbers: " + oddSum);
   }
 
   public static void main(String[] args) {

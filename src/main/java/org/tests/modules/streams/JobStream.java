@@ -1,12 +1,19 @@
 package org.tests.modules.streams;
 
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.*;
 import java.util.function.Function;
-import java.util.stream.*;
+import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
-import static java.lang.System.*;
+
 import static java.util.Arrays.asList;
 
+@Slf4j
 public class JobStream {
     private JobStream() {
     }
@@ -17,7 +24,7 @@ public class JobStream {
         Optional<Integer> sum = numbers.stream()
                 .reduce(Integer::sum);
 
-        sum.ifPresent(out::println); //output 11
+        sum.ifPresent(i->log.info(String.valueOf(i))); //output 11
     }
 
     public static void min() {
@@ -26,22 +33,23 @@ public class JobStream {
         Integer min = numbers.stream()
                 .reduce(Integer.MAX_VALUE, Integer::min);
 
-        out.println(min); //output
+        log.info(String.valueOf(min)); //output
     }
 
     public static void primitivesAverage() {
         OptionalDouble intAverage = IntStream.of(1, 2).average(); // 1.5
         OptionalDouble longAverage = LongStream.of(3, 4).average(); // 3.5
         OptionalDouble doubleAverage = DoubleStream.of(5, 6).average(); // 5.5
-        out.println(intAverage + " " + longAverage + " " + doubleAverage);
+        log.info(intAverage + " " + longAverage + " " + doubleAverage);
     }
 
     public static void filters() {
         IntStream.of(1, 3, 5, 7, 9)
-                .filter((i) -> i > 3)
-                .forEach(out::println); //output 5 7 9
+                .filter(i -> i > 3)
+                .forEach(i->log.info(String.valueOf(i))); //output 5 7 9
     }
 
+    @Getter
     static class Human {
         private final String name;
         private final List<String> pets;
@@ -49,16 +57,6 @@ public class JobStream {
         Human(String name, List<String> pets) {
             this.name = name;
             this.pets = pets;
-        }
-
-        //constructors, getters
-
-        public String getName() {
-            return name;
-        }
-
-        public List<String> getPets() {
-            return pets;
         }
     }
 
@@ -75,14 +73,14 @@ public class JobStream {
                 .flatMap(Collection::stream)//"разворачиваем" Stream<List<Pet>> в Stream<Pet>
                 .toList();
 
-        System.out.println(petNames); // output [Buddy, Lucy, Frankie, Rosie, Simba, Tilly]
+        log.info(petNames.toString()); // output [Buddy, Lucy, Frankie, Rosie, Simba, Tilly]
         int[][] arr = {{1, 2}, {3, 4}, {5, 6}};
 
         int[] newArr = Arrays.stream(arr)
                 .flatMapToInt(Arrays::stream) //преобразовываем IntStream<int[]> в IntStream
                 .toArray(); // преобразовываем IntStream в int[]
 
-        System.out.println(Arrays.toString(newArr)); //output [1, 2, 3, 4, 5, 6]
+        log.info(Arrays.toString(newArr)); //output [1, 2, 3, 4, 5, 6]
     }
 
     private static final Map<String, String> humans = Map.of(
@@ -101,42 +99,42 @@ public class JobStream {
                 .map(JobStream::getSurname)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .forEach(out::println);
+                .forEach(log::info);
     }
 
     public static void dublicates() {
         List<Integer> integers = Arrays.asList(11, 12, 11, 13, 15, 15);
         Set<Integer> integerSet = new HashSet<>();
-        integers.stream().filter(integerSet::add).forEach(x-> out.print(x+" "));
-        out.println("\n\r");
+        integers.stream().filter(integerSet::add).forEach(x-> log.info(x+" "));
+        log.info("\n\r");
 
-        integers.stream().filter(x -> !integerSet.add(x)).forEach(x -> out.print(x + " "));
-        out.println("\n\r");
+        integers.stream().filter(x -> !integerSet.add(x)).forEach(x -> log.info(x + " "));
+        log.info("\n\r");
 
-        integers.stream().filter(x-> !integerSet.add(x)).collect(Collectors.toSet()).forEach(x-> out.print(x+" "));
+        integers.stream().filter(x-> !integerSet.add(x)).collect(Collectors.toSet()).forEach(x-> log.info(x+" "));
 
     }
 
     public static void testStream() {
         List<Integer> integers = Arrays.asList(1, 3, 5, 6, 7, 8, 9, 33, 4, 55, 77);
-        integers.stream().skip(4).forEach(x -> out.print(x + " "));
-        out.println("\r\n");
-        integers.stream().limit(4).forEach(x -> out.print(x + " "));
+        integers.stream().skip(4).forEach(x -> log.info(x + " "));
+        log.info("\r\n");
+        integers.stream().limit(4).forEach(x -> log.info(x + " "));
     }
 
-    public static void testGroupping() {
+    public static void testGrouping() {
         String str = "Welcome to code decode and code decode welcome you";
-        out.println(str);
+        log.info(str);
         List<String> ss = Arrays.asList(str.split(" "));
         Map<String, Long> map = ss.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
-        out.println(map);
+        log.info(map.toString());
     }
 
     public static void testSmallestLargestDigit() {
         List<Integer> nums = Arrays.asList(1, 17, 54, 14, 14, 33, 45, -11);
-        System.out.println("List of numbers: " + nums);
+        log.info("List of numbers: " + nums);
         // Find the second smallest element
         Integer secondSmallest = nums.stream()
                 .distinct()
@@ -153,7 +151,7 @@ public class JobStream {
                 .findFirst()
                 .orElse(null);
 
-        System.out.println("\nSecond smallest element: " + secondSmallest);
-        System.out.println("\nSecond largest element: " + secondLargest);
+        log.info("\nSecond smallest element: " + secondSmallest);
+        log.info("\nSecond largest element: " + secondLargest);
     }
 }

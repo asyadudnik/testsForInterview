@@ -1,29 +1,34 @@
 package org.tests.regex;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class PinChecker {
+    public static final String PIN = "Original PIN Number: ";
+    public static final String IS_PIN_VALID = "Is the said PIN number is valid? ";
 
     public static void main(String[] args) {
         String n = "123";
-        System.out.println("Original PIN Number: " + n);
-        System.out.println("Is the said PIN number is valid? " + validate(n));
+        log.info(PIN + n);
+        log.info(IS_PIN_VALID + validate(n));
         n = "1234";
-        System.out.println("Original PIN Number: " + n);
-        System.out.println("Is the said PIN number is valid? " + validate(n));
+        log.info(PIN + n);
+        log.info(IS_PIN_VALID + validate(n));
         n = "12345";
-        System.out.println("Original PIN Number: " + n);
-        System.out.println("Is the said PIN number is valid? " + validate(n));
+        log.info(PIN + n);
+        log.info(IS_PIN_VALID + validate(n));
         n = "123456";
-        System.out.println("Original PIN Number: " + n);
-        System.out.println("Is the said PIN number is valid? " + validate(n));
+        log.info(PIN + n);
+        log.info(IS_PIN_VALID + validate(n));
         n = "1234567";
-        System.out.println("Original PIN Number: " + n);
-        System.out.println("Is the said PIN number is valid? " + validate(n));
+        log.info(PIN + n);
+        log.info(IS_PIN_VALID + validate(n));
         n = "12345678";
-        System.out.println("Original PIN Number: " + n);
-        System.out.println("Is the said PIN number is valid? " + validate(n));
+        log.info(PIN + n);
+        log.info(IS_PIN_VALID + validate(n));
         n = "123456789";
-        System.out.println("Original PIN Number: " + n);
-        System.out.println("Is the said PIN number is valid? " + validate(n));
+        log.info(PIN + n);
+        log.info(IS_PIN_VALID + validate(n));
     }
 
     public static boolean validate(String n) {

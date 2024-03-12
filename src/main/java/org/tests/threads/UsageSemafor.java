@@ -4,8 +4,10 @@ package org.tests.threads;
 
 
 //SemaphoreExercise.java
-import java.util.concurrent.Semaphore;
+import lombok.extern.slf4j.Slf4j;
 
+import java.util.concurrent.Semaphore;
+@Slf4j
 public class UsageSemafor {
     private static final int NUM_THREADS = 5;
     private static final int NUM_PERMITS = 2;
@@ -24,29 +26,32 @@ public class UsageSemafor {
                 thread.join();
             }
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.info(e.getMessage());
+            Thread.currentThread().interrupt();
         }
     }
 
     static class Worker implements Runnable {
-        private Semaphore semaphore;
+        private final Semaphore semaphore;
 
         public Worker(Semaphore semaphore) {
             this.semaphore = semaphore;
         }
 
+        @Override
         public void run() {
             try {
-                semaphore.acquire();
+                this.semaphore.acquire();
 
                 // Perform work that requires the semaphore
-                System.out.println("Thread " + Thread.currentThread().getName() + " acquired the semaphore.");
+                log.info("Thread " + Thread.currentThread().getName() + " acquired the semaphore.");
                 Thread.sleep(2000); // Simulating work
-                System.out.println("Thread " + Thread.currentThread().getName() + " released the semaphore.");
+                log.info("Thread " + Thread.currentThread().getName() + " released the semaphore.");
 
-                semaphore.release();
+                this.semaphore.release();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                log.info(e.getMessage());
+                Thread.currentThread().interrupt();
             }
         }
     }

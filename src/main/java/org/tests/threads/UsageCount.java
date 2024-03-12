@@ -1,8 +1,10 @@
 package org.tests.threads;
 
 
-import java.util.concurrent.CountDownLatch;
+import lombok.extern.slf4j.Slf4j;
 
+import java.util.concurrent.CountDownLatch;
+@Slf4j
 public class UsageCount {
         private static final int NUM_THREADS = 3;
         private static final CountDownLatch startLatch = new CountDownLatch(1);
@@ -21,21 +23,24 @@ public class UsageCount {
             try {
                 finishLatch.await();
             } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
                 e.printStackTrace();
             }
 
-            System.out.println("All threads have finished their work.");
+            log.info("All threads have finished their work.");
         }
 
         static class Worker implements Runnable {
+            @Override
             public void run() {
                 try {
                     startLatch.await();
 
                     // Perform work
 
-                    System.out.println("Thread " + Thread.currentThread().getName() + " has finished its work.");
+                    log.info("Thread " + Thread.currentThread().getName() + " has finished its work.");
                 } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
                     e.printStackTrace();
                 } finally {
                     finishLatch.countDown();

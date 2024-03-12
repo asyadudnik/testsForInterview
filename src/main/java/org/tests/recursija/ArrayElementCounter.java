@@ -1,5 +1,8 @@
 package org.tests.recursija;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class ArrayElementCounter {
 
     public static < T > int countOccurrences(T[] arr, T target) {
@@ -35,6 +38,6 @@ public class ArrayElementCounter {
         };
         int target = 20;
         int occurrences = countOccurrences(numbers, target);
-        System.out.println("The number of occurrences of " + target + " in the array is: " + occurrences);
+        log.info("The number of occurrences of " + target + " in the array is: " + occurrences);
     }
 }

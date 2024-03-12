@@ -1,9 +1,11 @@
 package org.tests.sort;
 
-import java.util.Arrays;
+import lombok.extern.slf4j.Slf4j;
 
+import java.util.Arrays;
+@Slf4j
 public class BubbleSorting {
-    void bubbleSort(int nums[]) {
+    void bubbleSort(int[] nums) {
         int n = nums.length;
         for (int i = 0; i < n - 1; i++)
             for (int j = 0; j < n - i - 1; j++)
@@ -16,13 +18,13 @@ public class BubbleSorting {
     }
 
     // Method to test above
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         BubbleSorting ob = new BubbleSorting();
-        int nums[] = {7, -5, 3, 2, 1, 0, 45};
-        System.out.println("Original Array:");
-        System.out.println(Arrays.toString(nums));
+        int[] nums = {7, -5, 3, 2, 1, 0, 45};
+        log.info("Original Array:");
+        log.info(Arrays.toString(nums));
         ob.bubbleSort(nums);
-        System.out.println("Sorted Array");
-        System.out.println(Arrays.toString(nums));
+        log.info("Sorted Array");
+        log.info(Arrays.toString(nums));
     }
 }

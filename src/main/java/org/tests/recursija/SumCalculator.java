@@ -1,5 +1,8 @@
 package org.tests.recursija;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class SumCalculator {
 
     public static int calculateSum(int n) {
@@ -15,6 +18,6 @@ public class SumCalculator {
     public static void main(String[] args) {
         int number = 7;
         int sum = calculateSum(number);
-        System.out.println("Sum of numbers from 1 to " + number + " is: " + sum);
+        log.info("Sum of numbers from 1 to " + number + " is: " + sum);
     }
 }

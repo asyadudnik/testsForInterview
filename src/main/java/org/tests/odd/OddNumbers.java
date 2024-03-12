@@ -1,10 +1,16 @@
 package org.tests.odd;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Slf4j
 public class OddNumbers {
+
     private OddNumbers() {
+
     }
 
     public static boolean onlyOddNumbers(List<Integer> list) {
@@ -28,8 +34,8 @@ public class OddNumbers {
         intNumbers.add(4);
         intNumbers.add(15);
         intNumbers.add(16);
-        System.out.println(onlyOddNumbers(intNumbers));
-        System.out.println(onlyOddNumbers2(intNumbers));
+        log.info(String.valueOf(onlyOddNumbers(intNumbers)));
+        log.info(String.valueOf(onlyOddNumbers2(intNumbers)));
 
     }
 }

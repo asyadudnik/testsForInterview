@@ -1,57 +1,58 @@
 package org.tests;
 
+import lombok.extern.slf4j.Slf4j;
 import org.tests.threads.CustomThread;
 
 import static org.tests.fibonacci.PrintFibonacci.printFibonacciSequence;
 import static org.tests.fibonacci.PrintFibonacciRecursive.printFibonacciWithRecurse;
 import static org.tests.functional_interface.CallFunctionalInterface.call;
+import static org.tests.modules.streams.JobStream.*;
 import static org.tests.odd.OddNumbers.printOddResults;
 import static org.tests.prime.PrimeNumberCheck.isPrime;
-import static org.tests.modules.streams.JobStream.*;
-
+@Slf4j
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        log.info("Hello World!");
         //prime
-        System.out.println(isPrime(19)); // true
-        System.out.println(isPrime(49)); // false
+        log.info(isPrime(19)); // true
+        log.info(isPrime(49)); // false
         //fibonacci
-        System.out.println("====== fibonacci==============");
+        log.info("====== fibonacci==============");
         printFibonacciSequence(10);
         printFibonacciWithRecurse();
         //odd
-        System.out.println("====== odd==============");
+        log.info("====== odd==============");
         printOddResults();
 
-        System.out.println("====== threads==============");
+        log.info("====== threads==============");
 
         CustomThread t1 = new CustomThread("Первый поток");
         t1.start();
         try {
             t1.join();
         } catch (InterruptedException e) {
-            Thread.interrupted();
-            throw new RuntimeException(e);
+            Thread.currentThread().interrupt();
+            log.error(e.getMessage());
         }
         CustomThread t2 = new CustomThread("Второй поток");
         t2.start();
         try {
             t2.join();
         } catch (InterruptedException e) {
-            Thread.interrupted();
-            throw new RuntimeException(e);
+            Thread.currentThread().interrupt();
+            log.error(e.getMessage());
         }
         CustomThread t3 = new CustomThread("Третий поток");
         t3.start();
         try {
             t3.join();
         } catch (InterruptedException e) {
-            Thread.interrupted();
-            throw new RuntimeException(e);
+            Thread.currentThread().interrupt();
+            log.error(e.getMessage());
         }
         //streams
-        System.out.println("======Streams======================");
+        log.info("======Streams======================");
         reduceUsage();
         min();
         primitivesAverage();
@@ -59,11 +60,10 @@ public class Main {
         flatMap();
         test();
         dublicates();
-        System.out.println("======");
+        log.info("======");
         call(14,23);
         call(21,123);
         testStream();
-        testGroupping();
         testSmallestLargestDigit();
     }
 }

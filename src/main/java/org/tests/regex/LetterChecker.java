@@ -1,14 +1,16 @@
 package org.tests.regex;
 
-import java.util.Scanner;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class LetterChecker {
         public static void main(String[] args) {
 
-            System.out.println(validate("phkuyrt"));
-            System.out.println(validate("pq"));
-            System.out.println(validate("pccddbbjjjq"));
-            System.out.println(validate("Jar"));
-            System.out.println(validate("pjhut"));
+            log.info(validate("phkuyrt"));
+            log.info(validate("pq"));
+            log.info(validate("pccddbbjjjq"));
+            log.info(validate("Jar"));
+            log.info(validate("pjhut"));
         }
 
         public static String validate(String text) {

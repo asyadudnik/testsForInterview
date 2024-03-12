@@ -1,8 +1,10 @@
 package org.tests.generics;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.List;
-
+@Slf4j
 public class ReverseList {
 
   public static < T > List < T > reverseList(List < T > originalList) {
@@ -20,11 +22,11 @@ public class ReverseList {
     List < String > colors = List.of("Red", "Green", "Orange");
 
     List < Integer > reversedNumbers = reverseList(numbers);
-    System.out.println("Original list of numbers: " + numbers);
-    System.out.println("Reversed numbers: " + reversedNumbers); // Output: [6, 5, 4, 3, 2, 1]
+    log.info("Original list of numbers: " + numbers);
+    log.info("Reversed numbers: " + reversedNumbers); // Output: [6, 5, 4, 3, 2, 1]
 
     List < String > reversedWords = reverseList(colors);
-    System.out.println("\nOriginal list of colors: " + colors);
-    System.out.println("Reversed colors: " + reversedWords); // Output: [Orange, Green, Red]
+    log.info("\nOriginal list of colors: " + colors);
+    log.info("Reversed colors: " + reversedWords); // Output: [Orange, Green, Red]
   }
 }
